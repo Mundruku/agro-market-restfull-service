@@ -51,9 +51,12 @@ Route::prefix('user')->group(function () {
    
 /* User register and Login routes */
 
+
+
 Route::post('/register', 'API\Auth\AuthController@register');
 Route::post('/login', 'API\Auth\AuthController@login');
-Route::post('/forgot/password', 'Api\AuthController@ForgotPasswordController');
+Route::post('/forgot/password', 'API\Auth\ForgotPasswordController@forgot_password');
+Route::post('/password/reset', 'API\Auth\ForgotPasswordController@reset_password');
 
 
 //Public routes for the user 
