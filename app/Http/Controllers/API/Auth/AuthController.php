@@ -56,9 +56,16 @@ class AuthController extends Controller
         /**Create an access token for the user
     */
     $success['token'] = $user->createToken('AgroMarket')->accessToken;
+
+    //send an email verification to the user 
+
+
+    $user->sendApiEmailVerificationNotification();
+
+
     /**Return success message with token value
     */
-    return response()->json(['success'=>$success], 200);
+    return response()->json(['success'=>$success, 'verify'=>'email verification needed'], 200);
 }
 
 
@@ -95,7 +102,9 @@ class AuthController extends Controller
 
         //checking email verification status
 
-           
+        if($role_check->email_verified_at==NULL){
+            return response(['error' => 'Please verify your']);
+        } 
 
 
         

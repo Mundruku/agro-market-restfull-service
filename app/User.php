@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Laravel\Passport\HasApiTokens;
-use App\Notifications\VerifyApiEmail;
+use App\Http\Controllers\API\Notifications\VerifyApiEmail;
 
 
 use Illuminate\Foundation\Auth\User as Authenticatable;

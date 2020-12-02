@@ -57,9 +57,9 @@ Route::post('/register', 'API\Auth\AuthController@register');
 Route::post('/login', 'API\Auth\AuthController@login');
 Route::post('/forgot/password', 'API\Auth\ForgotPasswordController@forgot_password');
 Route::post('/password/reset', 'API\Auth\ForgotPasswordController@reset_password');
-
 Route::get('email/verify/{id}', 'API\Auth\VerificationApiController@verify')->name('verificationapi.verify');
-Route::get('email/resend', 'API\Auth\VerificationApiController@resend')->name('verificationapi.resend');
+
+
 
 
 //Public routes for the user 
@@ -70,6 +70,8 @@ Route::get('email/resend', 'API\Auth\VerificationApiController@resend')->name('v
 /**Private routes for the user  */
 
 Route::middleware('auth:api')->group(function(){
+
+Route::get('email/resend', 'API\Auth\VerificationApiController@resend')->name('verificationapi.resend');
 
 Route::post('password/update', 'API\Auth\AuthController@user_password_update');
 
