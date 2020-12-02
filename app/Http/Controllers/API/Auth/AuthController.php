@@ -82,25 +82,7 @@ class AuthController extends Controller
 
         //checking user role in the User Auth controller 
 
-        if ($role_check->user_type=='admin') {
-
-            if (!auth()->attempt($loginData)) {
-                return response(['message' => 'Invalid Password']);
-            }
-           
-
-           // Generating an access token for the admin
-            $accessToken = auth()->user()->createToken('authToken')->accessToken;
-
-            //checking admin login credntial attempt
-
-            if (!auth()->attempt($loginData)) {
-                return response(['message' => 'Invalid Password']);
-            }
-
-            //redirect to the admin dashboard 
-             return response(['user' => auth()->user(),'user_type'=>'admin', 'access_token' => $accessToken]);
-        }
+       
 
         //checking authentication match for user type User 
 
@@ -108,6 +90,14 @@ class AuthController extends Controller
         if (!auth()->attempt($loginData)) {
             return response(['message' => 'Invalid Password']);
         }
+        
+
+
+        //checking email verification status
+
+           
+
+
         
         //Generating access  token for the User
         $accessToken = auth()->user()->createToken('authToken')->accessToken;

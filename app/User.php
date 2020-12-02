@@ -5,10 +5,12 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Laravel\Passport\HasApiTokens;
+use App\Notifications\VerifyApiEmail;
+
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
      use HasApiTokens, Notifiable;
 
@@ -39,7 +41,14 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    //Email verification logic for the API
 
+    public function sendApiEmailVerificationNotification()
+    {
+    $this->notify(new VerifyApiEmail); // my notification
+    }
+
+    //one to many relationship with OauthAccessToken table
 
     public function AauthAcessToken(){
         return $this->hasMany('\App\OauthAccessToken');

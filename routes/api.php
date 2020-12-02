@@ -49,7 +49,7 @@ Route::get('/logout', 'API\Auth\AdminAuthController@admin_logout');
 Route::prefix('user')->group(function () {
 
    
-/* User register and Login routes */
+/* User Authentication routes */
 
 
 
@@ -57,6 +57,9 @@ Route::post('/register', 'API\Auth\AuthController@register');
 Route::post('/login', 'API\Auth\AuthController@login');
 Route::post('/forgot/password', 'API\Auth\ForgotPasswordController@forgot_password');
 Route::post('/password/reset', 'API\Auth\ForgotPasswordController@reset_password');
+
+Route::get('email/verify/{id}', 'API\Auth\VerificationApiController@verify')->name('verificationapi.verify');
+Route::get('email/resend', 'API\Auth\VerificationApiController@resend')->name('verificationapi.resend');
 
 
 //Public routes for the user 
