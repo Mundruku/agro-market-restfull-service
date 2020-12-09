@@ -27,14 +27,12 @@ class AuthController extends Controller
     $validator = Validator::make($request->all(), [
         'first_name' => 'required',
         'last_name' => 'required',
-        'phone' => 'required|regex:/[0-9]{10}/',
         'email' => 'required|email|unique:users',
         'password' => 'required|min:6',
         'user_type'=>'required',
     ]);
          
-    /**Check the validation becomes fails or not
-    */
+    /**Check the validation becomes fails or not*/
     if ($validator->fails()) {
         /**Return error message
         */
@@ -173,7 +171,11 @@ class AuthController extends Controller
 
 
 
+//testing 
 
+public function details(){
+    return User::all();
+}
 
 
   
